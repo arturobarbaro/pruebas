@@ -133,4 +133,12 @@ class VuelosController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionRetrasar($id)
+    {
+        $vuelo = $this->findModel($id);
+        $vuelo->salida = !empty($vuelo->salida) ? date('Y-m-d H:i:s') : null;
+        $vuelo->save();
+        return $this->redirect(['vuelos/index']);
+    }
 }
