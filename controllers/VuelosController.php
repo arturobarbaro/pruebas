@@ -124,4 +124,13 @@ class VuelosController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionBuscarAjax()
+    {
+        $searchModel = new VuelosSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->renderAjax('_parcial', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }
