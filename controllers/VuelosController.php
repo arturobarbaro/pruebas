@@ -141,4 +141,12 @@ class VuelosController extends Controller
         $vuelo->save();
         return $this->redirect(['vuelos/index']);
     }
+    public function actionAdelantar($id)
+    {
+        $vuelo = $this->findModel($id);
+        $fecha = date('Y-m-d H:i:s');
+        $vuelo->llegada = !empty($vuelo->llegada) ? date('Y-m-d H:i:s', strtotime($fecha . '+ 20 hours')) : null;
+        $vuelo->save();
+        return $this->redirect(['vuelos/index']);
+    }
 }

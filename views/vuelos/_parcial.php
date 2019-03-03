@@ -11,17 +11,26 @@ use yii\helpers\Html;
         'origen_id',
         'destino_id',
         'salida',
+        'llegada',
         [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{view} {update} {delete} {ban}',
             'buttons' => [
                 'ban' => function ($url, $model, $key) {
                     return Html::a(
-                        'Actualizar',
+                        'Retrasar',
                         ['vuelos/retrasar', 'id' => $model->id],
                         [
                             'data-method' => 'POST',
                             'data-confirm' => '¿Seguro que desea retrasar la salida?'
+                        ]);
+                    },
+                'update' => function ($url, $model, $key) {
+                    return Html::a(
+                        'Adelantar',
+                        ['vuelos/adelantar', 'id' => $model->id],
+                        [
+                            'data-method' => 'POST',
                         ]);
                     },
                 ],
