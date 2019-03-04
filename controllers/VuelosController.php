@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Aeropuertos;
 use app\models\Vuelos;
 use app\models\VuelosSearch;
 use Yii;
@@ -41,6 +42,7 @@ class VuelosController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'listaOrigen' => $this->listaOrigen(),
         ]);
     }
 
@@ -149,5 +151,11 @@ class VuelosController extends Controller
         $vuelo->llegada = !empty($vuelo->llegada) ? date('Y-m-d H:i:s', strtotime($fecha . '+ 20 hours')) : null;
         $vuelo->save();
         return $this->redirect(['vuelos/index']);
+    }
+
+    public function listaOrigen()
+    {
+        //$listaOrigen = Vuelos::find()->select('origen')->joinWith('aeropuertos')->indexBy('aeropuertos.id')->column();
+        return array_merge([''], Aeropuertos::find()->select('denominacion')->indexBy('id')->column());
     }
 }
