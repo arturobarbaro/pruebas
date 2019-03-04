@@ -17,7 +17,7 @@ class VuelosSearch extends Vuelos
     {
         return [
             [['id', 'origen_id', 'destino_id', 'compania_id'], 'integer'],
-            [['codigo', 'salida', 'llegada'], 'safe'],
+            [['codigo'], 'safe'],
             [['plazas', 'precio'], 'number'],
         ];
     }

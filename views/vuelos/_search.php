@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'codigo') ?>
 
-    <?= $form->field($model, 'origen_id') ?>
+    <?= $form->field($model, 'origen_id')->dropDownList($listaOrigen) ?>
 
     <?= $form->field($model, 'destino_id') ?>
 
